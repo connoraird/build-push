@@ -14,11 +14,11 @@ inputs:
 
   registry_username:
     description: Username for authentication with the container registry.
-    required: false
+    required: true
 
   registry_password:
     description: Password for authentication with the container registry.
-    required: false
+    required: true
 
   context:
     description: The directory path used as the build context. Default is the current directory (`.`).
@@ -112,7 +112,6 @@ runs:
       INPUT_PLATFORMS: ${{ inputs.platforms }}
 
   - name: Log in to registry
-    if: ${{ inputs.push_to_registry == true }}
     uses: redhat-actions/podman-login@v1
     with:
       registry: ${{ inputs.registry_address }}

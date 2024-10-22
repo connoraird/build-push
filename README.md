@@ -15,8 +15,8 @@ This is a composite GitHub Action that incorporates the following actions:
 |------|-------------|----------|---------|
 | `image_name` | Name of the Docker image to be built and pushed. | Yes | - |
 | `registry_address` | URL of the container registry where the image will be pushed. | Yes | - |
-| `registry_username` | Username for authentication with the container registry. Not required if `push_to_registry` is `false`. | No | - |
-| `registry_password` | Password for authentication with the container registry. Not required if `push_to_registry` is `false`. | No | - |
+| `registry_username` | Username for authentication with the container registry. | Yes | - |
+| `registry_password` | Password for authentication with the container registry. | Yes | - |
 | `context` | The directory path used as the build context. | No | `./` |
 | `dockerfile_path` | Location of the Dockerfile. | No | `Dockerfile` |
 | `flavor` | Specifies the tagging strategy. For options, see [Docker Metadata Action documentation](https://github.com/docker/metadata-action?tab=readme#flavor-input). | No | - |
