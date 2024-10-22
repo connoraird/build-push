@@ -140,7 +140,7 @@ runs:
       context: ${{ inputs.context }}
       archs: ${{ inputs.archs }}
       platforms: ${{ inputs.platforms }}
-      build-args: $${{ inputs.build_args }}
+      build-args: ${{ inputs.build_args }}
       extra-args: ${{ inputs.buildah_extra_args }}
       layers: true
 
