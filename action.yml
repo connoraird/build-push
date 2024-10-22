@@ -14,11 +14,11 @@ inputs:
 
   registry_username:
     description: Username for authentication with the container registry.
-    required: true
+    required: false
 
   registry_password:
     description: Password for authentication with the container registry.
-    required: true
+    required: false
 
   context:
     description: The directory path used as the build context. Default is the current directory (`.`).
@@ -86,6 +86,11 @@ inputs:
     description: Extra arguments for the `podman push` command, separated by newlines.
     required: false
 
+  push_to_registry:
+    description: Whether to push to container registry. Defaults is true.
+    required: false
+    default: true
+
 outputs:
   push_result:
     description: JSON string with the digest and registry paths for pushed images.
@@ -107,6 +112,7 @@ runs:
       INPUT_PLATFORMS: ${{ inputs.platforms }}
 
   - name: Log in to registry
+    if: ${{ inputs.push_to_registry }}
     uses: redhat-actions/podman-login@v1
     with:
       registry: ${{ inputs.registry_address }}
@@ -140,6 +146,7 @@ runs:
 
   - name: Push Image to Registry
     id: push
+    if: ${{ inputs.push_to_registry }}
     uses: redhat-actions/push-to-registry@v2
     with:
       image: ${{ steps.build_image.outputs.image }}
@@ -147,6 +154,7 @@ runs:
       extra-args: ${{ inputs.push_extra_args }}
 
   - name: Print Push Result
+    if: ${{ inputs.push_to_registry }}
     run: "echo 'Push Result: ${{ toJSON(steps.push.outputs) }}'"
     shell: bash
 

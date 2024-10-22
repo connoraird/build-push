@@ -15,8 +15,8 @@ This is a composite GitHub Action that incorporates the following actions:
 |------|-------------|----------|---------|
 | `image_name` | Name of the Docker image to be built and pushed. | Yes | - |
 | `registry_address` | URL of the container registry where the image will be pushed. | Yes | - |
-| `registry_username` | Username for authentication with the container registry. | Yes | - |
-| `registry_password` | Password for authentication with the container registry. | Yes | - |
+| `registry_username` | Username for authentication with the container registry. Not required if `push_to_registry` is `false`. | No | - |
+| `registry_password` | Password for authentication with the container registry. Not required if `push_to_registry` is `false`. | No | - |
 | `context` | The directory path used as the build context. | No | `./` |
 | `dockerfile_path` | Location of the Dockerfile. | No | `Dockerfile` |
 | `flavor` | Specifies the tagging strategy. For options, see [Docker Metadata Action documentation](https://github.com/docker/metadata-action?tab=readme#flavor-input). | No | - |
@@ -29,6 +29,7 @@ This is a composite GitHub Action that incorporates the following actions:
 | `buildah_extra_args` | Additional arguments for the `buildah bud` command, separated by newlines. | No | - |
 | `oci` | Sets the image format. `true` for OCI format, `false` for Docker format. Default is false. | No | `false` |
 | `push_extra_args` | Extra arguments for the `podman push` command, separated by newlines. | No | - |
+| `push_to_registry` | Whether to push to container registry. Defaults is true. | No | `true` |
 
 ## Outputs
 
