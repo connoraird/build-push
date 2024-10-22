@@ -112,7 +112,7 @@ runs:
       INPUT_PLATFORMS: ${{ inputs.platforms }}
 
   - name: Log in to registry
-    if: ${{ inputs.push_to_registry }}
+    if: ${{ inputs.push_to_registry }} == "true"
     uses: redhat-actions/podman-login@v1
     with:
       registry: ${{ inputs.registry_address }}
@@ -146,7 +146,7 @@ runs:
 
   - name: Push Image to Registry
     id: push
-    if: ${{ inputs.push_to_registry }}
+    if: ${{ inputs.push_to_registry }} == "true"
     uses: redhat-actions/push-to-registry@v2
     with:
       image: ${{ steps.build_image.outputs.image }}
@@ -154,7 +154,7 @@ runs:
       extra-args: ${{ inputs.push_extra_args }}
 
   - name: Print Push Result
-    if: ${{ inputs.push_to_registry }}
+    if: ${{ inputs.push_to_registry }} == "true"
     run: "echo 'Push Result: ${{ toJSON(steps.push.outputs) }}'"
     shell: bash
 
