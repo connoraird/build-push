@@ -123,7 +123,7 @@ runs:
     uses: docker/metadata-action@v5
     with:
       images: ${{ inputs.registry_address }}/${{ inputs.image_name }}
-      tags: ${{ inputs.image_tags }}
+      tags: ${{ inputs.tags }}
       flavor: ${{ inputs.flavor }}
       labels: ${{ inputs.labels }}
       annotations: ${{ inputs.annotations }}
