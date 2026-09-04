@@ -29,7 +29,7 @@ This is a composite GitHub Action that incorporates the following actions:
 | `buildah_extra_args` | Additional arguments for the `buildah bud` command, separated by newlines. | No | - |
 | `oci` | Sets the image format. `true` for OCI format, `false` for Docker format. Default is false. | No | `false` |
 | `push_extra_args` | Extra arguments for the `podman push` command, separated by newlines. | No | - |
-| `push_to_registry` | Whether to push to container registry. Defaults is true. | No | `true` |
+| `push_to_registry` | Whether to push to container registry. Default is true. | No | `true` |
 
 ## Outputs
 
