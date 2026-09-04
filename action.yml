@@ -86,6 +86,11 @@ inputs:
     description: Extra arguments for the `podman push` command, separated by newlines.
     required: false
 
+  push_to_registry:
+    description: Whether to push to container registry. Default is true.
+    required: false
+    default: true
+
 outputs:
   push_result:
     description: JSON string with the digest and registry paths for pushed images.
@@ -134,12 +139,13 @@ runs:
       context: ${{ inputs.context }}
       archs: ${{ inputs.archs }}
       platforms: ${{ inputs.platforms }}
-      build-args: $${{ inputs.build_args }}
+      build-args: ${{ inputs.build_args }}
       extra-args: ${{ inputs.buildah_extra_args }}
       layers: true
 
   - name: Push Image to Registry
     id: push
+    if: ${{ inputs.push_to_registry == true }}
     uses: redhat-actions/push-to-registry@v2
     with:
       image: ${{ steps.build_image.outputs.image }}
@@ -147,6 +153,7 @@ runs:
       extra-args: ${{ inputs.push_extra_args }}
 
   - name: Print Push Result
+    if: ${{ inputs.push_to_registry == true }}
     run: "echo 'Push Result: ${{ toJSON(steps.push.outputs) }}'"
     shell: bash
 
