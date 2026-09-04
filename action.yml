@@ -87,7 +87,7 @@ inputs:
     required: false
 
   push_to_registry:
-    description: Whether to push to container registry. Defaults is true.
+    description: Whether to push to container registry. Default is true.
     required: false
     default: true
 
