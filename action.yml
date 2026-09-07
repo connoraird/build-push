@@ -149,7 +149,7 @@ runs:
 
   - name: Push Image to Registry
     id: push
-    if: ${{ inputs.push_to_registry == true }}
+    if: ${{ inputs.push_to_registry == 'true' }}
     uses: redhat-actions/push-to-registry@94ade333c38ecc0e60e94785125d9a52ca423b37 # v3.0.0
     with:
       image: ${{ steps.build_image.outputs.image }}
@@ -157,7 +157,7 @@ runs:
       extra-args: ${{ inputs.push_extra_args }}
 
   - name: Print Push Result
-    if: ${{ inputs.push_to_registry == true }}
+    if: ${{ inputs.push_to_registry == 'true' }}
     run: "echo 'Push Result: ${{ toJSON(steps.push.outputs) }}'"
     shell: bash
 
